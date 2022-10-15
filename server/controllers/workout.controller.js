@@ -37,7 +37,7 @@ module.exports.getAllForLoginUser = (req, response) => {
     });
 }
 
-module.exports.getAllWorkouts = (request, response) => {
+module.exports.getAll = (request, response) => {
     Workout.find({})
         .then(workouts => {
             console.log(workouts);
