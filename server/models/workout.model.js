@@ -24,7 +24,7 @@ const WorkoutSchema = new mongoose.Schema({
         type: String,
         required: [ true, "Please include a description"],
     },
-    instructions: { 
+    instruction: { 
         type: String,
         required: [ true, "Please include instructions"],
     },
