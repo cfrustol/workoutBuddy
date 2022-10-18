@@ -1,6 +1,6 @@
-
-import {createContext,useReducer} from 'react'
-import axios from 'axios'
+import React from "react";
+import { createContext, useReducer } from "react";
+import axios from "axios";
 
 
 const UserContext = createContext()
@@ -20,26 +20,18 @@ const reducer = (state,action)=>{
                 user:null
             }
         case"LOGOUT_USER":
-            console.log("top of Logout")
-
-           
-            axios.get('http://localhost:8000/api/v1/logout',{withCredentials:true})
+            console.log("logout")
+            axios.get('http://localhost:8000/api/logout',{withCredentials:true})
             .then(()=>{
                 action.payload('/')
             })
             .catch(()=>{
-                action.payload('/movies')
+                action.payload('/')
             })
             return{
                 ...state,
                 user:null
             }
-
-
-            
-
-      
-            
         default:
             return state
     }
