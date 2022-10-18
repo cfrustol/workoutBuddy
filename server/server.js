@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 require('./config/mongoose.config');    
 require('./routes/user.routes')(app);
-require('./routes/appointment.routes')(app);
+require('./routes/workout.routes')(app);
 
 // const jwt = require('jsonwebtoken');
 // var token = jwt.sign({id: 'jjs2n8s1380js'}, process.env.SECRET_KEY);
