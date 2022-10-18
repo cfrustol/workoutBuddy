@@ -47,6 +47,16 @@ module.exports.getAll = (request, response) => {
             res.status(400).json({ err });
     });
 }
+module.exports.create = (request, response) => {
+    Workout.create(request.body)
+        .then(workout => {
+            console.log(workout);
+            response.json(workout);
+        })
+        .catch((err) => {
+            response.status(400).json({ err });
+    });
+}
 
 module.exports.getOne = (request, response) => {
     Workout.findOne({_id:request.params.id})

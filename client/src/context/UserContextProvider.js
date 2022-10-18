@@ -21,7 +21,7 @@ const reducer = (state,action)=>{
             }
         case"LOGOUT_USER":
             console.log("logout")
-            axios.get('http://localhost:8000/api/logout',{withCredentials:true})
+            axios.get('http://localhost:8000/api/logout', {withCredentials:true})
             .then(()=>{
                 action.payload('/')
             })

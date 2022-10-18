@@ -1,10 +1,10 @@
-import React from 'react';
-import { useState} from 'react';
+import { useState,useEffect, useContext } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/UserContextProvider';
 
 const WorkoutAdd = () => {
-
+    const {state} = useContext(UserContext);
     const [name, setName] = useState("")
     const [goal, setGoal] = useState("")
     const [sets, setSets] = useState("")
@@ -16,12 +16,23 @@ const WorkoutAdd = () => {
 
     const navigate = useNavigate()
 
+    useEffect(()=>{
+        console.log("Add a Workout Page")
+        !state.user && navigate('/')
+        
+      },[])
+
 
     const Goaltypes = [
         'Balance',
         'Flexibility',
         'Strength',
         'Endurance',
+    ]
+    const difficulties = [
+        'Easy ',
+        'Intermediate',
+        'Advanced',
     ]
 
 
@@ -63,24 +74,31 @@ const WorkoutAdd = () => {
 
     const SubmitWorkout = (e) => {
         e.preventDefault()
-            const workout={name,
-                    goal,
-                    sets,
-                    reps,
-                    difficulty,
-                    description,
-                    instruction,
-                    }
-            axios.post("http://localhost:8000/api/workouts",workout)
+
+            const workout={
+                name,
+                goal,
+                sets,
+                reps,
+                difficulty,
+                description,
+                instruction,
+            }
+
+            axios.post("http://localhost:8000/api/workouts/create",workout)
             .then((workout)=>{
                 console.log(workout)
                 navigate("/dashboard")
             })
             .catch((err)=>{
-                console.log(err.response.data.error.errors)
-                setErrors(err.response.data.error.errors)
+                console.log(err)
+                setErrors(err)
             })
         }
+
+        const handleLogout = ()=>{
+            console.log("logged out")
+            }
         
 
     
@@ -88,13 +106,13 @@ const WorkoutAdd = () => {
 return (
     <div>
         <div >
-        <button onClick={()=>navigate(`/dashboard`)} >Dashboard</button>
-            <button onClick={()=>navigate(`/logout`)} >Log Out</button>
+            <button onClick={()=>navigate(`/dashboard`)} >Dashboard</button>
+            <button onClick={handleLogout} >Log Out</button>
         </div>
     <div  >
     <div >
-    <h1>Lets Add a Workout [USER] </h1>
-        <form onSubmit={ SubmitWorkout } className='MainSell'>
+    <h1>Lets Add a Workout</h1>
+        <form onSubmit={ SubmitWorkout } className=''>
         
         {errors.name ? <p style={{color:"red"}}>{errors.name.message}</p>:null}
         <div> {/*name*/}
@@ -125,12 +143,14 @@ return (
         {errors.price ? <p style={{color:"red"}}>{errors.price.message}</p>:null}
         <div onChange={ handleDifficulty }> 
             <label>Difficulty: </label> 
-            <input type="radio"  name="difficulty"   value="Beginner"/>
-            <label>Begginer</label> 
-            <input type="radio"  name="difficulty"   value="Intermediate"/>
-            <label>Intermediate</label> 
-            <input type="radio"  name="difficulty"  value="Advance"/>
-            <label>Advance</label> 
+            <select name="items" id="items" onChange={ handleDifficulty}>
+            <option value="" ></option>
+                {
+                    difficulties.map((item,idx)=>(
+                        <option key = {idx} value={item}>{item}</option>
+                    ))
+                }
+            </select>
         </div>
         <div> 
             <label>Description: </label> 
@@ -141,7 +161,7 @@ return (
             <input type="text" onChange={ handleInstruction }  value={instruction}/>
         </div>
         
-        <input type="submit" value="Add Item" />
+        <input type="submit" value="Create Workout" />
         </form>
     </div>
     </div>

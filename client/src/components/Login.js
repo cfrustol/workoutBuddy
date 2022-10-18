@@ -38,7 +38,7 @@ const Login = ({setLoggedIn}) => {
 
             .catch((err) => {
                 console.log(err.response.data);
-                setErrors(err.response.data.error);
+                setErrors(err.response.data);
       });
     }
 
