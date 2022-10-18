@@ -44,8 +44,8 @@ const Register = ({user, setLoggedIn}) => {
                 navigate("/dashboard");
             })
             .catch((err) => {
-                setErrors(err.response.data.error.errors);
                 console.log(err.response.data.error.errors);
+                setErrors(err.response.data.error.errors);
             })
     ;
     }

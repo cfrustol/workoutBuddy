@@ -18,7 +18,7 @@ function App() {
       <Router>
         <Routes>
           <Route element= {<Home/>}  path ="/"/>    
-          <Route element={<LogInAndRegister setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>} path="/" default />
+          <Route element={<LogInAndRegister setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>} path="/register" />
           <Route element= {<WorkoutList/>} path ="/dashboard" />  
           <Route element= {<AddWorkout/>} path ="/workout/add" />   
           <Route element= {<EditWorkout/>} path ="/workout/edit/:id" /> 

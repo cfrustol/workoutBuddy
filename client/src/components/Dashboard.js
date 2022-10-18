@@ -1,11 +1,12 @@
 import React from 'react'
-import { useState,useEffect } from 'react'
+import { useState,useEffect, useContext } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/UserContextProvider';
 
 
 const WorkoutList = () => {
-  
+  const {state,dispatch} = useContext(UserContext);
   const [workouts,setWorkouts] = useState([])
 
 
@@ -14,7 +15,7 @@ const WorkoutList = () => {
 
 
   useEffect(() =>{
-      axios.get("http://localhost:8000/api/v1/workouts")
+      axios.get("http://localhost:8000/api/workouts")
       .then((workoutList) =>{
         setWorkouts(workoutList.data.Workouts)
           console.log(workoutList)  
@@ -25,7 +26,7 @@ const WorkoutList = () => {
   },[])
 
   const handleDelete=(id)=>{
-    axios.delete(`http://localhost:8000/api/v1/workouts/${id}`)
+    axios.delete(`http://localhost:8000/api/workouts/${id}`)
     .then((res)=>{
     console.log(res)
     navigate('/dashboard')
@@ -33,17 +34,22 @@ const WorkoutList = () => {
     .catch((err)=>{
     console.log(err)
     })
-}
+  }
 
-
-
+  const handleLogout = ()=>{
+  console.log("logged out")
+  dispatch({
+    type:"LOGOUT_USER",
+    payload:navigate
+  })
+  }
 
   return (
   
     <div className="container">
       <div className="header">
         <button onClick={()=>navigate(`/workout/add`)} >Add Workout</button>
-        <button onClick={()=>navigate(`/logout`)} >Log Out</button>
+        <button onClick={handleLogout} >Log Out</button>
       </div>
       
     
