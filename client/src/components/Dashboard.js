@@ -1,9 +1,10 @@
-import React, {useEffect,useState} from 'react';
+import React, {useEffect,useState, useContext} from 'react';
 import axios from 'axios';
 import {Link, useParams, useNavigate} from 'react-router-dom';
-
+import { UserContext } from '../context/UserContextProvider';
 
 const Dashboard = () => {
+  const {state, dispatch} = useContext(UserContext)
   const [workouts,setWorkouts] = useState([])
   const {id} = useParams();
   const userId = workouts.user_id
@@ -18,12 +19,20 @@ const Dashboard = () => {
       .catch( err => console.log(err))
   }, [])
 
+  const handleLogout = ()=>{
+    console.log("logged out")
+    dispatch({
+      type:"LOGOUT_USER",
+      payload:navigate
+    })
+  }
+
   return (
   
     <div className="">
       <div className="">
         <button onClick={()=>navigate(`/workout/add`)} >Add Workout</button>
-        <button>Log Out</button>
+        <button onClick={handleLogout}>Log Out</button>
       </div>
       <table className="">
             <thead className=" ">
