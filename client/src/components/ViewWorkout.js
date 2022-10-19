@@ -50,11 +50,11 @@ return (
         <div >
             <p>Name: {workout.name}</p>
             <p>Difficulty: {workout.difficulty}</p>
-            <p>Goal Type: {workout.type}</p>
+            <p>Goal Type: {workout.goal}</p>
             <p>Sets: {workout.sets}</p>
             <p>Reps: {workout.reps}</p>
             <p>Description: {workout.description}</p>
-            <p>Instruction: {workout.instructions}</p>
+            <p>Instruction: {workout.instruction}</p>
             <Link to={`/workout/edit/${workout._id}`}><button>Edit</button></Link>
             <button onClick={handleDelete}>Delete</button>
         </div>
