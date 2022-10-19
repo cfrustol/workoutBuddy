@@ -1,24 +1,26 @@
 import axios from 'axios'
-import React, { useEffect,useState } from 'react'
+import {UserContext} from '../context/UserContextProvider'
+import {useEffect,useState,useContext} from 'react'
 import {useParams,useNavigate } from 'react-router-dom'
 
 const ItemView = () => {
 
     const navigate = useNavigate()
-    const [item,setItem] = useState("")
+    const {state} = useContext(UserContext)
+    const [workout,setWorkout] = useState({})
     const {id} = useParams() 
 
 
     useEffect(()=>{
-        axios.get(`http://localhost:8000/api/v1/workouts/${id}`)
+        axios.get(`http://localhost:8000/api/workouts/view/${id}`,{withCredentials:true})
         .then((res) =>{
-            console.log(res.data.item)  
-            setItem(res.data.item)
+            console.log(res.data)  
+            setWorkout(res.data)
         })
         .catch((err) =>{
             console.log(err)   
         })
-    },)
+    },[])
     
     
 
@@ -29,12 +31,13 @@ return (
             <button onClick={()=>navigate(`/logout`)} >Log Out</button>
         </div>
         <div >
-            <p>Name: {item.name}</p>
-            <p>Goal Type: {item.type}</p>
-            <p>Sets: {item.sets}</p>
-            <p>Reps: {item.reps}</p>
-            <p>Description: {item.description}</p>
-            <p>Instruction: {item.instruction}</p>
+            <p>Name: {workout.name}</p>
+            <p>Difficulty: {workout.difficulty}</p>
+            <p>Goal Type: {workout.type}</p>
+            <p>Sets: {workout.sets}</p>
+            <p>Reps: {workout.reps}</p>
+            <p>Description: {workout.description}</p>
+            <p>Instruction: {workout.instructions}</p>
         </div>
     </div>
 )

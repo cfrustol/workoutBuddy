@@ -40,7 +40,7 @@ const Dashboard = () => {
                       <td>{workout.name}</td>
                       <td>{workout.goal}</td>
                       <td>
-                        <Link to={`/workouts/${workout._id}`}><button className="">View</button></Link>
+                        <Link to={`/workout/view/${workout._id}`}><button className="">View</button></Link>
                       </td>
                   </tr>
                 ))
