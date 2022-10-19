@@ -13,7 +13,7 @@ const Dashboard = () => {
   useEffect(() =>{
       axios.get("http://localhost:8000/api/workouts/all")
       .then(res =>{
-        console.log(res.data)  
+        console.log(res.data); 
         setWorkouts(res.data);
       })
       .catch( err => console.log(err))
@@ -39,6 +39,7 @@ const Dashboard = () => {
                 <tr className="">
                     <th scope=''>Name</th>
                     <th scope=''>Goal</th>
+                    <th>Creator</th>
                     <th scope=''>Actions</th>
                 </tr>
             </thead>
@@ -48,6 +49,8 @@ const Dashboard = () => {
                   <tr className="" key={index}>
                       <td>{workout.name}</td>
                       <td>{workout.goal}</td>
+                      {/*testing to see how we can get the users name to be displayed */}
+                      <td>{workout._id}</td>
                       <td>
                         <Link to={`/workout/view/${workout._id}`}><button className="">View</button></Link>
                       </td>

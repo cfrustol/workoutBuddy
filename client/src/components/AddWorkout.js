@@ -16,11 +16,18 @@ const WorkoutAdd = () => {
     const [errors, setErrors] = useState({})
 
     const navigate = useNavigate()
+
     const Goaltypes = [
         'Balance',
         'Flexibility',
         'Strength',
         'Endurance',
+    ]
+
+    const difficult = [
+        'beginner',
+        'intermediate',
+        'advanced',
     ]
 
     const handleName = (e)=>{
@@ -61,14 +68,15 @@ const WorkoutAdd = () => {
 
     const SubmitWorkout = (e) => {
         e.preventDefault()
-            const workout={name,
-                    goal,
-                    sets,
-                    reps,
-                    difficulty,
-                    description,
-                    instruction,
-                    }
+            const workout={
+                name,
+                goal,
+                sets,
+                reps,
+                difficulty,
+                description,
+                instruction,
+            }
             axios.post("http://localhost:8000/api/workouts",workout, {withCredentials:true})
             .then((workout)=>{
                 console.log(workout)
@@ -97,7 +105,7 @@ return (
         </div>
     <div  >
     <div >
-    <h1>Lets Add a Workout [USER] </h1>
+    <h1>Lets Add a Workout {state.name}  </h1>
         <form onSubmit={ SubmitWorkout } className='MainSell'>
         
         {errors.name ? <p style={{color:"red"}}>{errors.name.message}</p>:null}
@@ -127,15 +135,15 @@ return (
             <input type="number" onChange={ handleReps } value={reps}/>
         </div>
         {errors.price ? <p style={{color:"red"}}>{errors.price.message}</p>:null}
-        <div onChange={ handleDifficulty }> 
-            <label>Difficulty: </label> 
-            <input type="radio"  name="difficulty"   value="Beginner"/>
-            <label>Begginer</label> 
-            <input type="radio"  name="difficulty"   value="Intermediate"/>
-            <label>Intermediate</label> 
-            <input type="radio"  name="difficulty"  value="Advance"/>
-            <label>Advance</label> 
-        </div>
+        <label>Difficulty: </label> 
+        <select name="" id="" onChange={ handleDifficulty}>
+            <option value="" ></option>
+                {
+                    difficult.map((item,idx)=>(
+                        <option key = {idx} value={item}>{item}</option>
+                    ))
+                }
+            </select>
         <div> 
             <label>Description: </label> 
             <input type="text" onChange={ handleDescription }  value={description}/>

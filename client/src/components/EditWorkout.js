@@ -135,7 +135,7 @@ const EditWorkout = () => {
                 {errors.type ? <p style={{color:"red"}}>{errors.type.message}</p>:null}
                 <div> {/*Type*/}
                     <label>Type: </label> 
-                    <select name="items" id="items" onChange={ handleGoal} value={goal} >
+                    <select name="" id="" onChange={ handleGoal} value={goal} >
                     <option></option>
                         {
                             Goaltypes.map((item,idx)=>(
@@ -156,7 +156,7 @@ const EditWorkout = () => {
                 {errors.price ? <p style={{color:"red"}}>{errors.price.message}</p>:null}
                 <div onChange={ handleDifficulty }> 
                     <label>Difficulty: </label> 
-                    <select name="" id="" onChange={ handleDifficulty} value={difficulty} >
+                    <select onChange={ handleDifficulty} value={difficulty} >
                     <option></option>
                         {
                             difficult.map((item,idx)=>(
