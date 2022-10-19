@@ -12,7 +12,7 @@ const ItemView = () => {
 
 
     useEffect(()=>{
-        axios.get(`http://localhost:8000/api/workouts/view/${id}`,{withCredentials:true})
+        axios.get(`http://localhost:8000/api/workouts/${id}`,{withCredentials:true})
         .then((res) =>{
             console.log(res.data)  
             setWorkout(res.data)
@@ -49,7 +49,7 @@ return (
             <p>Reps: {workout.reps}</p>
             <p>Description: {workout.description}</p>
             <p>Instruction: {workout.instructions}</p>
-            <Link to={`/api/workouts/edit/${workout._id}`}><button>Edit</button></Link>
+            <Link to={`/workout/edit/${workout._id}`}><button>Edit</button></Link>
             <button onClick={handleDelete}>Delete</button>
         </div>
     </div>

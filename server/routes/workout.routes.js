@@ -4,7 +4,7 @@ module.exports = (app) => {
     app.get('/api/workouts', WorkoutController.getAllForLoginUser);
     app.post('/api/workouts/create', WorkoutController.create);
     app.get('/api/workouts/all', WorkoutController.getAll);
-    app.get('/api/workouts/view/:id', WorkoutController.getOne);
+    app.get('/api/workouts/:id', WorkoutController.getOne);
     app.put('/api/workouts/edit/:id', WorkoutController.update);
     app.delete('/api/workouts/:id', WorkoutController.delete);
 }
