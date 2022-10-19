@@ -69,7 +69,7 @@ const WorkoutAdd = () => {
                     description,
                     instruction,
                     }
-            axios.post("http://localhost:8000/api/workouts",workout)
+            axios.post("http://localhost:8000/api/workouts",workout, {withCredentials:true})
             .then((workout)=>{
                 console.log(workout)
                 navigate("/dashboard")
