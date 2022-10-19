@@ -59,22 +59,22 @@ const EditWorkout = () => {
         setInstruction(e.target.value)
     }
 
-    useEffect((id)=>{
+    useEffect(()=>{
         axios.get(`http://localhost:8000/api/workouts/${id}`)
         .then((res) =>{
             console.log(res.data.item)  
-            setName(res.data.item[0].name) 
-            setGoal(res.data.item[0].goal) 
-            setSets(res.data.item[0].sets) 
-            setReps(res.data.item[0].reps) 
-            setDifficulty(res.data.item[0].difficulty)  
-            setDescription(res.data.item[0].description)  
-            setInstruction(res.data.item[0].instruction)  
+            setName(res.data.name) 
+            setGoal(res.data.goal) 
+            setSets(res.data.sets) 
+            setReps(res.data.reps) 
+            setDifficulty(res.data.difficulty)  
+            setDescription(res.data.description)  
+            setInstruction(res.data.instruction)  
         })
         .catch((err) =>{
             console.log(err)   
         })
-    },[])
+    },[id])
 
 
     const SubmitWorkout = (e) => {
@@ -87,13 +87,13 @@ const EditWorkout = () => {
                 description,
                 instruction,
                 }
-            axios.put(`http://localhost:8000/api/v1/workouts/${id}`,workout)
+            axios.put(`http://localhost:8000/api/workouts/edit/${id}`,workout)
             .then((workout)=>{
                 console.log(workout)
                 navigate("/dashboard")
             })
             .catch((err)=>{
-                console.log(err.response.data.error.errors)
+                console.log(err.response.data)
                 setErrors(err.response.data.error.errors)
             },[])
         }
