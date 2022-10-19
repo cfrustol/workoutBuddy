@@ -26,6 +26,17 @@ const EditWorkout = () => {
         'Strength',
         'Endurance',
     ]
+    const difficult = [
+        'beginner',
+        'intermediate',
+        'advanced',
+    ]
+
+    const handleName = (e)=>{
+
+        setErrors("")
+        setName(e.target.value)
+    }
 
     const handleGoal = (e)=>{
 
@@ -59,22 +70,22 @@ const EditWorkout = () => {
         setInstruction(e.target.value)
     }
 
-    useEffect((id)=>{
+    useEffect((_id)=>{
         axios.get(`http://localhost:8000/api/workouts/${id}`)
         .then((res) =>{
-            console.log(res.data.item)  
-            setName(res.data.item[0].name) 
-            setGoal(res.data.item[0].goal) 
-            setSets(res.data.item[0].sets) 
-            setReps(res.data.item[0].reps) 
-            setDifficulty(res.data.item[0].difficulty)  
-            setDescription(res.data.item[0].description)  
-            setInstruction(res.data.item[0].instruction)  
+            console.log(res.data.goal)  
+            setName(res.data.name) 
+            setGoal(res.data.goal) 
+            setSets(res.data.sets) 
+            setReps(res.data.reps) 
+            setDifficulty(res.data.difficulty)  
+            setDescription(res.data.description)  
+            setInstruction(res.data.instruction)  
         })
         .catch((err) =>{
             console.log(err)   
         })
-    },[])
+    },[id])
 
 
     const SubmitWorkout = (e) => {
@@ -87,7 +98,7 @@ const EditWorkout = () => {
                 description,
                 instruction,
                 }
-            axios.put(`http://localhost:8000/api/v1/workouts/${id}`,workout)
+            axios.put(`http://localhost:8000/api/workouts/edit/${id}`,workout)
             .then((workout)=>{
                 console.log(workout)
                 navigate("/dashboard")
@@ -116,12 +127,16 @@ const EditWorkout = () => {
         <div>
             <div>
             <h1>Workout Name: {name}</h1>
-                <form onSubmit={ SubmitWorkout } className='MainSell'>
+                <form onSubmit={ SubmitWorkout } className=''>
+                <div>
+                    <label htmlFor="">Exercise Name</label>
+                    <input type="text" onChange={ handleName } value={name}/>
+                </div>
                 {errors.type ? <p style={{color:"red"}}>{errors.type.message}</p>:null}
                 <div> {/*Type*/}
                     <label>Type: </label> 
-                    <select name="items" id="items" onChange={ handleGoal}>
-                    <option value={goal} ></option>
+                    <select name="items" id="items" onChange={ handleGoal} value={goal} >
+                    <option></option>
                         {
                             Goaltypes.map((item,idx)=>(
                                 <option key = {idx} value={item}>{item}</option>
@@ -141,12 +156,14 @@ const EditWorkout = () => {
                 {errors.price ? <p style={{color:"red"}}>{errors.price.message}</p>:null}
                 <div onChange={ handleDifficulty }> 
                     <label>Difficulty: </label> 
-                    <input type="radio"  name="difficulty"   value="Beginner"/>
-                    <label>Begginer</label> 
-                    <input type="radio"  name="difficulty"   value="Intermediate"/>
-                    <label>Intermediate</label> 
-                    <input type="radio"  name="difficulty"  value="Advance"/>
-                    <label>Advance</label> 
+                    <select name="" id="" onChange={ handleDifficulty} value={difficulty} >
+                    <option></option>
+                        {
+                            difficult.map((item,idx)=>(
+                                <option key = {idx} value={item}>{item}</option>
+                            ))
+                        }
+                    </select>
                 </div>
                 <div> 
                     <label>Description: </label> 
@@ -157,7 +174,7 @@ const EditWorkout = () => {
                     <input type="text" onChange={ handleInstruction }  value={instruction}/>
                 </div>
                 
-                <input type="submit" value="Add Item" />
+                <input type="submit" value="Finish Edit" />
                 </form>
             </div>
             </div>
