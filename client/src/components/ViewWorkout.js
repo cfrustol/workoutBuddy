@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {UserContext} from '../context/UserContextProvider'
 import {useEffect,useState,useContext} from 'react'
-import {useParams,useNavigate } from 'react-router-dom'
+import {Link,useParams,useNavigate } from 'react-router-dom'
 
 const ItemView = () => {
 
@@ -21,6 +21,17 @@ const ItemView = () => {
             console.log(err)   
         })
     },[])
+
+    const handleDelete=()=>{
+        axios.delete(`http://localhost:8000/api/workouts/${id}`,{withCredentials:true})
+        .then((res)=>{
+            console.log(res)
+            navigate('/dashboard')
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+      }
     
     
 
@@ -38,6 +49,8 @@ return (
             <p>Reps: {workout.reps}</p>
             <p>Description: {workout.description}</p>
             <p>Instruction: {workout.instructions}</p>
+            <Link to={`/api/workouts/edit/${workout._id}`}><button>Edit</button></Link>
+            <button onClick={handleDelete}>Delete</button>
         </div>
     </div>
 )
