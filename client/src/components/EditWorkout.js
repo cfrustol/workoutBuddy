@@ -1,9 +1,12 @@
-import { useState,useEffect  } from 'react';
+import React from 'react';
+import { useState,useEffect, useContext } from 'react';
 import axios from 'axios';
 import {useNavigate,useParams} from 'react-router-dom';
+import { UserContext } from '../context/UserContextProvider';
 
-const EditWorkout = (props) => {
 
+const EditWorkout = () => {
+    const {state, dispatch} = useContext(UserContext)
     const {id} = useParams()
     const [name, setName] = useState("")
     const [goal, setGoal] = useState("")
@@ -23,17 +26,6 @@ const EditWorkout = (props) => {
         'Strength',
         'Endurance',
     ]
-
-    const difficulties = [
-        'Easy ',
-        'Intermediate',
-        'Advanced',
-    ]
-
-    const handleName = (e)=>{
-        setErrors("")
-        setName(e.target.value)
-    }
 
     const handleGoal = (e)=>{
 
@@ -67,19 +59,17 @@ const EditWorkout = (props) => {
         setInstruction(e.target.value)
     }
 
-    useEffect(()=>{
+    useEffect((id)=>{
         axios.get(`http://localhost:8000/api/workouts/${id}`)
         .then((res) =>{
-            console.log(res.data)  
-            setName(res.data.name)
-            // console.log(res.data.goal)
-            setGoal(res.data.goal)
-            setSets(res.data.sets)
-            setReps(res.data.reps)
-            setDifficulty(res.data.difficulty)
-            setDescription(res.data.description)
-            setInstruction(res.data.instruction)
-
+            console.log(res.data.item)  
+            setName(res.data.item[0].name) 
+            setGoal(res.data.item[0].goal) 
+            setSets(res.data.item[0].sets) 
+            setReps(res.data.item[0].reps) 
+            setDifficulty(res.data.item[0].difficulty)  
+            setDescription(res.data.item[0].description)  
+            setInstruction(res.data.item[0].instruction)  
         })
         .catch((err) =>{
             console.log(err)   
@@ -97,7 +87,7 @@ const EditWorkout = (props) => {
                 description,
                 instruction,
                 }
-            axios.put(`http://localhost:8000/api/workouts/edit/${id}`,workout)
+            axios.put(`http://localhost:8000/api/v1/workouts/${id}`,workout)
             .then((workout)=>{
                 console.log(workout)
                 navigate("/dashboard")
@@ -108,73 +98,71 @@ const EditWorkout = (props) => {
             },[])
         }
         
-        
+    const handleLogout = ()=>{
+      console.log("logged out")
+      dispatch({
+        type:"LOGOUT_USER",
+        payload:navigate
+      })
+    }
     
 
         return (
-            <div>
+        <div>
             <div >
                 <button onClick={()=>navigate(`/dashboard`)} >Dashboard</button>
-                {/* <button onClick={handleLogout} >Log Out</button> */}
+                <button onClick={handleLogout} >Log Out</button>
             </div>
-        <div  >
-        <div >
-        <h1>Lets Add a Workout</h1>
-            <form onSubmit={ SubmitWorkout } className=''>
-            
-            {errors.name ? <p style={{color:"red"}}>{errors.name.message}</p>:null}
-            <div> {/*name*/}
-                <label>Name: </label> 
-                <input type="text" onChange={ handleName} value={name}/>
+        <div>
+            <div>
+            <h1>Workout Name: {name}</h1>
+                <form onSubmit={ SubmitWorkout } className='MainSell'>
+                {errors.type ? <p style={{color:"red"}}>{errors.type.message}</p>:null}
+                <div> {/*Type*/}
+                    <label>Type: </label> 
+                    <select name="items" id="items" onChange={ handleGoal}>
+                    <option value={goal} ></option>
+                        {
+                            Goaltypes.map((item,idx)=>(
+                                <option key = {idx} value={item}>{item}</option>
+                            ))
+                        }
+                    </select>
+                </div>
+                {errors.sku ? <p style={{color:"red"}}>{errors.sku.message}</p>:null}
+                <div> 
+                    <label>Sets: </label> 
+                    <input type="number" onChange={ handleSets } value={sets}/>
+                </div>
+                <div> 
+                    <label>Reps: </label> 
+                    <input type="number" onChange={ handleReps } value={reps}/>
+                </div>
+                {errors.price ? <p style={{color:"red"}}>{errors.price.message}</p>:null}
+                <div onChange={ handleDifficulty }> 
+                    <label>Difficulty: </label> 
+                    <input type="radio"  name="difficulty"   value="Beginner"/>
+                    <label>Begginer</label> 
+                    <input type="radio"  name="difficulty"   value="Intermediate"/>
+                    <label>Intermediate</label> 
+                    <input type="radio"  name="difficulty"  value="Advance"/>
+                    <label>Advance</label> 
+                </div>
+                <div> 
+                    <label>Description: </label> 
+                    <input type="text" onChange={ handleDescription }  value={description}/>
+                </div>
+                <div> 
+                    <label>Instruction: </label> 
+                    <input type="text" onChange={ handleInstruction }  value={instruction}/>
+                </div>
+                
+                <input type="submit" value="Add Item" />
+                </form>
             </div>
-            {errors.type ? <p style={{color:"red"}}>{errors.type.message}</p>:null}
-            <div> {/*Type*/}
-                <label>Type: </label> 
-                <select name="items" id="items" onChange={ handleGoal} value={goal}>
-                <option value="goal" ></option>
-                    {
-                        Goaltypes.map((item,idx)=>(
-                            <option key = {idx} value={item}>{item}</option>
-                        ))
-                    }
-                </select>
             </div>
-            {errors.sku ? <p style={{color:"red"}}>{errors.sku.message}</p>:null}
-            <div> 
-                <label>Sets: </label> 
-                <input type="number" onChange={ handleSets } value={sets}/>
-            </div>
-            <div> 
-                <label>Reps: </label> 
-                <input type="number" onChange={ handleReps } value={reps}/>
-            </div>
-            {errors.price ? <p style={{color:"red"}}>{errors.price.message}</p>:null}
-            <div onChange={ handleDifficulty }> 
-                <label>Difficulty: </label> 
-                <select name="items" id="items" onChange={ handleDifficulty} value={difficulty}>
-                <option value="" ></option>
-                    {
-                        difficulties.map((item,idx)=>(
-                            <option key = {idx} value={item}>{item}</option>
-                        ))
-                    }
-                </select>
-            </div>
-            <div> 
-                <label>Description: </label> 
-                <input type="text" onChange={ handleDescription }  value={description}/>
-            </div>
-            <div> 
-                <label>Instruction: </label> 
-                <input type="text" onChange={ handleInstruction }  value={instruction}/>
-            </div>
-            
-            <input type="submit" value="Edit Workout" />
-            </form>
         </div>
-        </div>
-        </div>
-        )
+    )
     }
 
 export default EditWorkout

@@ -6,7 +6,7 @@ import {Link,useParams,useNavigate } from 'react-router-dom'
 const ItemView = () => {
 
     const navigate = useNavigate()
-    const {state} = useContext(UserContext)
+    const {state, dispatch} = useContext(UserContext)
     const [workout,setWorkout] = useState({})
     const {id} = useParams() 
 
@@ -33,13 +33,19 @@ const ItemView = () => {
         })
       }
     
+    const handleLogout = ()=>{
+      console.log("logged out")
+      dispatch({
+        type:"LOGOUT_USER",
+        payload:navigate
+      })
+    }
     
-
 return (
     <div>
         <div >
             <button onClick={()=>navigate(`/dashboard`)} >Dashboard</button>
-            <button onClick={()=>navigate(`/logout`)} >Log Out</button>
+            <button onClick={handleLogout} >Log Out</button>
         </div>
         <div >
             <p>Name: {workout.name}</p>
