@@ -48,16 +48,18 @@ return (
             <Button id="dbbtn" onClick={()=>navigate(`/dashboard`)} >Dashboard</Button>
             <Button id="logout" onClick={handleLogout} >Log Out</Button>
         </div>
-        <div id="viewW" >
+        <div id="viewW">
             <p>Name: {workout.name}</p>
             <p>Difficulty: {workout.difficulty}</p>
             <p>Goal Type: {workout.goal}</p>
-            <p>Sets: {workout.sets}</p>
+            <p>Sets: {workout.sets}</p>  
             <p>Reps: {workout.reps}</p>
             <p>Description: {workout.description}</p>
             <p>Instruction: {workout.instruction}</p>
-            <Link  to={`/workout/edit/${workout._id}`}><Button id="editb">Edit</Button></Link>
-            <Button id="dletb" onClick={handleDelete}>Delete</Button>
+            <div className="row">
+                <Button onClick = {()=>navigate(`/workout/edit/${id}`)} id="editb">Edit</Button>
+                <Button id="dletb" onClick={handleDelete}>Delete</Button>
+            </div>
         </div>
     </div>
 )
