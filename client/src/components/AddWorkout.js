@@ -3,6 +3,8 @@ import { useState, useContext} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContextProvider';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 const WorkoutAdd = () => {
     const {state, dispatch} = useContext(UserContext)
@@ -98,15 +100,15 @@ const WorkoutAdd = () => {
     
 
 return (
-    <div>
-        <div >
-        <button onClick={()=>navigate(`/dashboard`)} >Dashboard</button>
-            <button onClick={handleLogout} >Log Out</button>
+    <div >
+        <div id="abtn">
+        <Button id="dbbtn"onClick={()=>navigate(`/dashboard`)} >Dashboard</Button>
+            <Button id="logout" onClick={handleLogout} >Log Out</Button>
         </div>
-    <div  >
+    <div id="letsAdd" >
     <div >
     <h1>Lets Add a Workout {state.name}  </h1>
-        <form onSubmit={ SubmitWorkout } className='MainSell'>
+        <Form id="addwork" onSubmit={ SubmitWorkout } className='MainSell'>
         
         {errors.name ? <p style={{color:"red"}}>{errors.name.message}</p>:null}
         <div> {/*name*/}
@@ -134,16 +136,18 @@ return (
             <label>Reps: </label> 
             <input type="number" onChange={ handleReps } value={reps}/>
         </div>
+        <div>
         {errors.price ? <p style={{color:"red"}}>{errors.price.message}</p>:null}
         <label>Difficulty: </label> 
         <select name="" id="" onChange={ handleDifficulty}>
-            <option value="" ></option>
+            <option value=""></option>
                 {
                     difficult.map((item,idx)=>(
                         <option key = {idx} value={item}>{item}</option>
                     ))
                 }
             </select>
+            </div>
         <div> 
             <label>Description: </label> 
             <input type="text" onChange={ handleDescription }  value={description}/>
@@ -153,8 +157,8 @@ return (
             <input type="text" onChange={ handleInstruction }  value={instruction}/>
         </div>
         
-        <input type="submit" value="Add Item" />
-        </form>
+        <input id="create" type="submit" value="Add Item" />
+        </Form>
     </div>
     </div>
     </div>

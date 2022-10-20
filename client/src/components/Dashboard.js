@@ -33,11 +33,11 @@ const Dashboard = () => {
   
     <div className="">
       <div className="">
-        <Button onClick={()=>navigate(`/workout/add`)} >Add Workout</Button>
+        <Button id="add" onClick={()=>navigate(`/workout/add`)} >Add Workout</Button>
         <Button id="logout" onClick={handleLogout}>Log Out</Button>
       </div>
-      <table className="">
-            <thead className=" ">
+      <Table id="dash" striped bordered hover>
+            <thead className=" head">
                 <tr className="">
                     <th scope=''>Name</th>
                     <th scope=''>Goal</th>
@@ -60,7 +60,7 @@ const Dashboard = () => {
                 ))
               }
             </tbody>
-        </table>
+        </Table>
     </div>
   
   )
