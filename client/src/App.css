@@ -60,3 +60,89 @@ td {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+.about {
+  margin-top: 80px;
+  margin-bottom: 3px;
+  border: solid #102542 2px ;
+  background: #b3a394;
+}
+.login{
+  width: 400px;
+  background-color: #cdd7d6;
+  margin-left: 650px;
+  margin-top: 3px;
+  border: solid #102542 5px ;
+}
+.regi{
+  width: 400px;
+  margin-left: 650px;
+  margin-top: 20px;
+  flex-direction: column;
+  border: solid #102542 5px ;
+  background-color: #cdd7d6;
+
+}
+
+#rbtn{
+  margin-top: 10px;
+  background-color: #102542;
+ background: #b3a394;
+}
+
+#lbtn{
+  background-color: #102542;
+ background: #b3a394;
+ margin-top: 10px;
+
+}
+
+.header {
+  margin-top: 20px;
+}
+
+#navb {
+  background-color: #102542;
+}
+
+#dash {
+ 
+  width: 950px;
+  margin-left: 350px;
+}
+
+
+#add {
+  background-color: #102542;
+  margin-left: 600px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+}
+
+#logout {
+  background-color: #102542;
+  /* margin-left: 950px; */
+  margin-top: 20px;
+  margin-bottom: 20px;
+  
+}
+
+#addwork {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-left: 555px;
+  border: solid #102542 5px ;
+  width: 600px;
+  height: 600px;
+  
+}
+
+#create {
+  width: 300px;
+  height: 35px;
+  border-radius: 30%;
+  margin-left: 150px;
+  text-decoration-style: double;
+  
+}
