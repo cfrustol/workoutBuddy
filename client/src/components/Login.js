@@ -45,7 +45,7 @@ const Login = ({setLoggedIn}) => {
     return (
     <div>
         <div>
-            <div>
+            <div className='login'>
                 <h1>Login</h1>
                 <form onSubmit={handleLogin}>
                     <div>
@@ -59,7 +59,7 @@ const Login = ({setLoggedIn}) => {
                             <input type="password" name="password" onChange = {(e)=>setPassword(e.target.value)}/>
                         </div>
                     </div>
-                    <input value={"Login"} type="submit"/>
+                    <input id="lbtn" value={"Login"} type="submit"/>
                 </form>
             </div>
         </div>

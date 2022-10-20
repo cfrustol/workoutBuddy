@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
 }
 
 .App-logo {
@@ -38,15 +38,12 @@
   }
 }
 
-
-
-
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
-th{
+th {
   text-align: center;
   padding: 10px;
   border-bottom: 2px solid black;
@@ -59,4 +56,132 @@ td {
 
 tr:nth-child(even) {
   background-color: #dddddd;
+}
+.about {
+  margin-top: 80px;
+  margin-bottom: 3px;
+  border: solid #102542 2px;
+  background: #b3a394;
+}
+.login {
+  width: 400px;
+  background-color: #cdd7d6;
+  margin-left: 650px;
+  margin-top: 3px;
+  border: solid #102542 5px;
+}
+.regi {
+  width: 400px;
+  margin-left: 650px;
+  margin-top: 20px;
+  flex-direction: column;
+  border: solid #102542 5px;
+  background-color: #cdd7d6;
+}
+
+#rbtn {
+  margin-top: 10px;
+  background-color: #102542;
+  background: #b3a394;
+}
+
+#lbtn {
+  background-color: #102542;
+  background: #b3a394;
+  margin-top: 10px;
+}
+
+.header {
+  margin-top: 20px;
+}
+
+#navb {
+  background-color: #102542;
+}
+
+#dash {
+  width: 950px;
+  margin-left: 450px;
+}
+
+#add {
+  background-color: #102542;
+  margin-left: 600px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#logout {
+  background-color: #102542;
+  /* margin-left: 950px; */
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.head {
+  background-color: #cdd7d6;
+}
+
+#addwork {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-left: 555px;
+  border: solid 5px #102542;
+  background-color: #b3a394;
+  width: 600px;
+  height: 600px;
+}
+#letsAdd {
+  margin-top: 20px;
+}
+#abtn {
+  margin-top: 20px;
+}
+#dbbtn {
+  background-color: #102542;
+}
+
+#create {
+  width: 300px;
+  height: 35px;
+  border-radius: 30%;
+  margin-left: 150px;
+  background-color: #c4493b;
+  font-weight: 600;
+}
+
+#viewW {
+  margin-top: 20px;
+  font-size: larger;
+  font-weight: 700;
+  border: solid 5px #102542;
+  width: 550px;
+  margin-left: 700px;
+  padding: 40px;
+}
+
+#editb {
+  background-color: #102542;
+}
+
+#dletb {
+  background-color: #102542;
+}
+
+#editp {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-left: 555px;
+  border: solid 5px #102542;
+  background-color: #b3a394;
+  width: 600px;
+  height: 500px;
+}
+#editf {
+  border-radius: 30%;
+  margin-left: 150px;
+  font-weight: 550;
+  background-color: #c4493b;
 }

@@ -53,7 +53,7 @@ const Register = ({user, setLoggedIn}) => {
     return (
     <div>
         <div>
-            <div>
+            <div className='regi'>
                 <h1>Register</h1>
                 <form onSubmit={handleRegister}>
                     <div>
@@ -85,7 +85,7 @@ const Register = ({user, setLoggedIn}) => {
                         </div>
                         
                     </div>
-                    <input value={"Register"} type="submit"/>
+                    <input id="rbtn" value={"Register"} type="submit"/>
                 </form>
             </div>
         </div>

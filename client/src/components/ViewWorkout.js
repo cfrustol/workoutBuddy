@@ -2,6 +2,7 @@ import axios from 'axios'
 import {UserContext} from '../context/UserContextProvider'
 import {useEffect,useState,useContext} from 'react'
 import {Link,useParams,useNavigate } from 'react-router-dom'
+import Button from 'react-bootstrap/Button';
 
 const ItemView = () => {
 
@@ -44,10 +45,10 @@ const ItemView = () => {
 return (
     <div>
         <div >
-            <button onClick={()=>navigate(`/dashboard`)} >Dashboard</button>
-            <button onClick={handleLogout} >Log Out</button>
+            <Button id="dbbtn" onClick={()=>navigate(`/dashboard`)} >Dashboard</Button>
+            <Button id="logout" onClick={handleLogout} >Log Out</Button>
         </div>
-        <div >
+        <div id="viewW" >
             <p>Name: {workout.name}</p>
             <p>Difficulty: {workout.difficulty}</p>
             <p>Goal Type: {workout.goal}</p>
@@ -55,8 +56,8 @@ return (
             <p>Reps: {workout.reps}</p>
             <p>Description: {workout.description}</p>
             <p>Instruction: {workout.instruction}</p>
-            <Link to={`/workout/edit/${workout._id}`}><button>Edit</button></Link>
-            <button onClick={handleDelete}>Delete</button>
+            <Link  to={`/workout/edit/${workout._id}`}><Button id="editb">Edit</Button></Link>
+            <Button id="dletb" onClick={handleDelete}>Delete</Button>
         </div>
     </div>
 )

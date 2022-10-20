@@ -3,6 +3,7 @@ import { useState,useEffect, useContext } from 'react';
 import axios from 'axios';
 import {useNavigate,useParams} from 'react-router-dom';
 import { UserContext } from '../context/UserContextProvider';
+import Button from 'react-bootstrap/Button';
 
 
 const EditWorkout = () => {
@@ -121,12 +122,12 @@ const EditWorkout = () => {
         return (
         <div>
             <div >
-                <button onClick={()=>navigate(`/dashboard`)} >Dashboard</button>
-                <button onClick={handleLogout} >Log Out</button>
+                <Button id="dbbtn" onClick={()=>navigate(`/dashboard`)} >Dashboard</Button>
+                <Button id="logout" onClick={handleLogout} >Log Out</Button>
             </div>
         <div>
-            <div>
-            <h1>Workout Name: {name}</h1>
+            <div id="editp">
+            <h2>Workout Name: {name}</h2>
                 <form onSubmit={ SubmitWorkout } className=''>
                 <div>
                     <label htmlFor="">Exercise Name</label>
@@ -174,7 +175,7 @@ const EditWorkout = () => {
                     <input type="text" onChange={ handleInstruction }  value={instruction}/>
                 </div>
                 
-                <input type="submit" value="Finish Edit" />
+                <input id="editf"type="submit" value="Finish Edit" />
                 </form>
             </div>
             </div>

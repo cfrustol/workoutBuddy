@@ -8,6 +8,7 @@ import AddWorkout from './components/AddWorkout';
 import EditWorkout from './components/EditWorkout';
 import ViewWorkout from './components/ViewWorkout';
 import LogInAndRegister from './components/LogInAndRegister';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {

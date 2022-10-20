@@ -2,6 +2,8 @@ import React, {useEffect,useState, useContext} from 'react';
 import axios from 'axios';
 import {Link, useParams, useNavigate} from 'react-router-dom';
 import { UserContext } from '../context/UserContextProvider';
+import Button from 'react-bootstrap/Button';
+import Table from 'react-bootstrap/Table';
 
 const Dashboard = () => {
   const {state, dispatch} = useContext(UserContext)
@@ -31,11 +33,11 @@ const Dashboard = () => {
   
     <div className="">
       <div className="">
-        <button onClick={()=>navigate(`/workout/add`)} >Add Workout</button>
-        <button onClick={handleLogout}>Log Out</button>
+        <Button id="add" onClick={()=>navigate(`/workout/add`)} >Add Workout</Button>
+        <Button id="logout" onClick={handleLogout}>Log Out</Button>
       </div>
-      <table className="">
-            <thead className=" ">
+      <Table id="dash" striped bordered hover>
+            <thead className=" head">
                 <tr className="">
                     <th scope=''>Name</th>
                     <th scope=''>Goal</th>
@@ -58,7 +60,7 @@ const Dashboard = () => {
                 ))
               }
             </tbody>
-        </table>
+        </Table>
     </div>
   
   )
