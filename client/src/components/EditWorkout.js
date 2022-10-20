@@ -105,8 +105,8 @@ const EditWorkout = () => {
                 navigate("/dashboard")
             })
             .catch((err)=>{
-                console.log(err.response.data.error.errors)
-                setErrors(err.response.data.error.errors)
+                console.log(err.response.data.err.errors)
+                setErrors(err.response.data.err.errors)
             },[])
         }
         
@@ -129,13 +129,14 @@ const EditWorkout = () => {
             <div id="editp">
             <h2>Workout Name: {name}</h2>
                 <form onSubmit={ SubmitWorkout } className=''>
+                {errors.name ? <p style={{color:"red"}}>{errors.name.message}</p>:null}
                 <div>
                     <label htmlFor="">Exercise Name</label>
                     <input type="text" onChange={ handleName } value={name}/>
                 </div>
-                {errors.type ? <p style={{color:"red"}}>{errors.type.message}</p>:null}
+                {errors.goal ? <p style={{color:"red"}}>{errors.goal.message}</p>:null}
                 <div> {/*Type*/}
-                    <label>Type: </label> 
+                    <label>Goal Type: </label> 
                     <select name="" id="" onChange={ handleGoal} value={goal} >
                     <option></option>
                         {
@@ -145,16 +146,16 @@ const EditWorkout = () => {
                         }
                     </select>
                 </div>
-                {errors.sku ? <p style={{color:"red"}}>{errors.sku.message}</p>:null}
+                {errors.sets ? <p style={{color:"red"}}>{errors.sets.message}</p>:null}
                 <div> 
                     <label>Sets: </label> 
-                    <input type="number" onChange={ handleSets } value={sets}/>
+                    <input type="number" onChange={ handleSets } min='0' value={sets}/>
                 </div>
                 <div> 
+                    {errors.reps ? <p style={{color:"red"}}>{errors.reps.message}</p>:null}
                     <label>Reps: </label> 
-                    <input type="number" onChange={ handleReps } value={reps}/>
+                    <input type="number" onChange={ handleReps } min='0' value={reps}/>
                 </div>
-                {errors.price ? <p style={{color:"red"}}>{errors.price.message}</p>:null}
                 <div onChange={ handleDifficulty }> 
                     <label>Difficulty: </label> 
                     <select onChange={ handleDifficulty} value={difficulty} >
@@ -167,10 +168,12 @@ const EditWorkout = () => {
                     </select>
                 </div>
                 <div> 
+                    {errors.description ? <p style={{color:"red"}}>{errors.description.message}</p>:null}
                     <label>Description: </label> 
                     <input type="text" onChange={ handleDescription }  value={description}/>
                 </div>
                 <div> 
+                    {errors.instruction ? <p style={{color:"red"}}>{errors.instruction.message}</p>:null}   
                     <label>Instruction: </label> 
                     <input type="text" onChange={ handleInstruction }  value={instruction}/>
                 </div>

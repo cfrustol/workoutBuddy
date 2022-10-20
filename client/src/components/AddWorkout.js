@@ -85,8 +85,8 @@ const WorkoutAdd = () => {
                 navigate("/dashboard")
             })
             .catch((err)=>{
-                console.log(err.response.data.error.errors)
-                setErrors(err.response.data.error.errors)
+                console.log(err.response.data.errors)
+                setErrors(err.response.data.errors)
             })
         }
         
@@ -107,16 +107,16 @@ return (
         </div>
     <div id="letsAdd" >
     <div >
-    <h1>Lets Add a Workout {state.name}  </h1>
-        <Form id="addwork" onSubmit={ SubmitWorkout } className='MainSell'>
+    <Form id="addwork" onSubmit={ SubmitWorkout } className='MainSell'>
+        <h1>Lets Add a Workout {state.name}  </h1>
         
         {errors.name ? <p style={{color:"red"}}>{errors.name.message}</p>:null}
         <div> {/*name*/}
             <label>Name: </label> 
             <input type="text" onChange={ handleName} value={name}/>
         </div>
-        {errors.type ? <p style={{color:"red"}}>{errors.type.message}</p>:null}
         <div> {/*Type*/}
+            {errors.goal ? <p style={{color:"red"}}>{errors.goal.message}</p>:null}
             <label>Type: </label> 
             <select name="items" id="items" onChange={ handleGoal}>
             <option value="" ></option>
@@ -127,17 +127,18 @@ return (
                 }
             </select>
         </div>
-        {errors.sku ? <p style={{color:"red"}}>{errors.sku.message}</p>:null}
         <div> 
+            {errors.sets ? <p style={{color:"red"}}>{errors.sets.message}</p>:null}
             <label>Sets: </label> 
-            <input type="number" onChange={ handleSets } value={sets}/>
+            <input type="number" onChange={ handleSets } min='0' value={sets}/>
         </div>
         <div> 
+            {errors.reps ? <p style={{color:"red"}}>{errors.reps.message}</p>:null}
             <label>Reps: </label> 
-            <input type="number" onChange={ handleReps } value={reps}/>
+            <input type="number" onChange={ handleReps } min='0' value={reps}/>
         </div>
         <div>
-        {errors.price ? <p style={{color:"red"}}>{errors.price.message}</p>:null}
+        {errors.difficulty ? <p style={{color:"red"}}>{errors.difficulty.message}</p>:null}
         <label>Difficulty: </label> 
         <select name="" id="" onChange={ handleDifficulty}>
             <option value=""></option>
@@ -149,10 +150,12 @@ return (
             </select>
             </div>
         <div> 
+            {errors.description ? <p style={{color:"red"}}>{errors.description.message}</p>:null}
             <label>Description: </label> 
             <input type="text" onChange={ handleDescription }  value={description}/>
         </div>
         <div> 
+            {errors.instruction ? <p style={{color:"red"}}>{errors.instruction.message}</p>:null}
             <label>Instruction: </label> 
             <input type="text" onChange={ handleInstruction }  value={instruction}/>
         </div>

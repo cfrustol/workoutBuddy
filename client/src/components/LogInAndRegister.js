@@ -6,7 +6,7 @@ import Register from './Register';
 const LogInAndRegister= () => {
 
     return (
-        <div>
+        <div >
             <Register />
             <Login />
         </div>

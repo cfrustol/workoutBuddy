@@ -151,13 +151,12 @@ tr:nth-child(even) {
 }
 
 #viewW {
-  margin-top: 20px;
   font-size: larger;
   font-weight: 700;
   border: solid 5px #102542;
   width: 550px;
-  margin-left: 700px;
-  padding: 40px;
+  margin:auto;
+  padding: 20px;
 }
 
 #editb {
@@ -172,7 +171,7 @@ tr:nth-child(even) {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
   margin-left: 555px;
   border: solid 5px #102542;
   background-color: #b3a394;
